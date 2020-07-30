@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block content %}
+<h2>Complete Your Order</h2>
+    {% for item in buy_item_info %}
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ item['name'] }}</h4>
+                <br>
+                <img src="/static/images/sample_item.png" class="img-fluid" alt="Responsive image">
+                <div class="float-right">
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?size=400x200
+                    &maptype=roadmap
+                    &markers=color:blue%7Clabel:D%7C{{ item['address_id'] }},{{ item['city'] }}
+                    &markers=color:green%7Clabel:H%7C{{ session['address'] }}
+                    &path={{ item['address_id'] }},{{ item['city'] }}|{{ session['address'] }}
+                    &key=AIzaSyAycLC3_s_TdWbjlUfBmZ6rYSaRHMp78DY" alt="Map">
+                </div>
+                <br><br>
+                <h6>Harvested: {{item['harvested']}}</h6>
+                <div class="float-left"> Seller: <a href="{{ url_for('profile', user = item['seller_name']) }}"> {{ item['seller_name']}} </a>
+                </div>
+                <br>
+                <div align="right" style="padding: 10px" class="float-right border">
+                    <h6>Price: ${{ item['price_per_unit']}} / {{ item['unit'] }}</h6>
+                    <h6>Quantity: 1 {{ item['unit']}}</h6><br>
+                    <h5>Total: ${{ item['price_per_unit']}}</h5>
+                    <button type="button" class="btn btn-success btn-sm">Purchase w/ Paypal</button>
+                    <button type="button" class="btn btn-info btn-sm">Trade</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='{{ url_for('item_feed')}}'">Cancel</button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

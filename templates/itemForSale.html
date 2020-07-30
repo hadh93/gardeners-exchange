@@ -1,0 +1,50 @@
+t
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block content %}
+
+{% if item_form.errors %}
+        <h2>There were problems</h2>
+        <ul>
+            {% for field_name in item_form.errors %}
+                {% for field_error in item_form.errors[field_name] %}
+                    <li>{{ item_form[field_name].label }}: {{ field_error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                    <div class="col"></div>
+                    <div class="col card top-buffer">
+                        <h4 class="card-title top-buffer">Sell an Item!</h4>
+                        <form class="top-buffer" action="" method="POST" enctype='multipart/form-data'>
+                            {{ item_form.csrf_token }}
+                          <div class="form-group">
+                              {{ item_form.itemname.label }}{{ item_form.itemname(class_="form-control", placeholder="Home-made cookies, fresh eggplants..") }}
+                          </div>
+
+                          <div class="form-group">
+                              {{ item_form.itemprice.label }}{{ item_form.itemprice(class_="form-control", placeholder="How much is this?") }}
+                          </div>
+
+                          <div class="form-group">
+                              {{ item_form.itemunit.label }}{{ item_form.itemunit(class_="form-control", placeholder="oz, lb, jar ...") }}
+                          </div>
+
+                          <div class="form-group">
+                              {{ item_form.image.label }}{{ item_form.image(class_="form-control-file") }}
+                          </div>
+                            {{ item_form.submit(class="btn btn-primary btn-sm")}}
+                        </form>
+                    </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

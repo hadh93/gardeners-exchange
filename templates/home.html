@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block content %}
+    <h2>Item Feed</h2>
+    <form method="POST" class="form-inline">
+        {{ search_form.csrf_token }}
+        {{ search_form.keyword(class_="form-control mr-sm-2", placeholder="Item or Username") }}
+        {{ search_form.submit(class="btn btn-success")}}
+        <p id="somemessage">Have an Item to sell?</p>
+        <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='{{ url_for('itemForSale') }}'">Add Item</button>
+    </form>
+    {% include 'feed.html' %}
+{% endblock %}

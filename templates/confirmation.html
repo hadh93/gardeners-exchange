@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Congratulations!</h3>
+    <p>You are registered. Now you can buy/sell fresh crops to your neighbors so quickly and easily!</p>
+    <p>Redirecting in 5 seconds...</p>
+
+    <script>
+
+        // Your application has indicated there's an error
+        window.setTimeout(function(){
+
+            // Move to a new location or you can do something else
+            window.location.href = "{{ url_for('item_feed') }}";
+
+        }, 5000);
+    
+    </script>
+{% endblock %}

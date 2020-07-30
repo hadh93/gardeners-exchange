@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block content %}
+
+{% if register_form.errors %}
+        <h2>There were problems</h2>
+        <ul>
+            {% for field_name in register_form.errors %}
+                {% for field_error in register_form.errors[field_name] %}
+                    <li>{{ register_form[field_name].label }}: {{ field_error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col card top-buffer">
+                <h4 class="card-title top-buffer">Join the Gardener's Exchange!</h4>
+                <form class="card-text top-buffer" action="" method="POST" enctype='multipart/form-data'>
+                    {{ register_form.csrf_token }}
+                    <div class="form-group">
+                        {{ register_form.username.label }}
+                        {{ register_form.username(class_='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.emailaddress.label }}
+                        {{ register_form.emailaddress(class_='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.password.label }}
+                        {{ register_form.password(class_='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.passwordconfirmation.label }}
+                        {{ register_form.passwordconfirmation(class_='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.zipcode.label }}
+                        {{ register_form.zipcode(class_='form-control') }}
+                    </div>
+        {{ register_form.submit(class_="btn btn-primary") }}
+</form>
+        </div>
+            <div class="col"></div>
+    </div>
+</div>
+{% endblock %}

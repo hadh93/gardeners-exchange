@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block content %}
+    <h2>Profile</h2>
+    <div class="row">
+        <div class="col card">
+            <div class="card-body">
+
+                <button type="button" class="btn btn-success btn-sm align-top float-right" data-toggle="modal" data-target="#exampleModal">
+                    Change Profile Picture
+                </button>
+                <h3 class="card-title float-middle align-top">{{ items[0][4] }}</h3>
+                <p>
+                    <img src="{{ image }}"
+                         class="float-left" alt="Responsive image">
+                </p>
+                <p class="card-text align-middle">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat viverra nibh, sit amet eleifend velit aliquet non. Vivamus arcu orci, rutrum vel tincidunt nec, ullamcorper nec neque. Vivamus rhoncus ipsum id ipsum finibus laoreet. Maecenas vel ante id sapien malesuada vestibulum. Suspendisse vehicula viverra nulla, ac eleifend nunc pellentesque sed. Cras id tellus mollis, consequat velit eu, auctor lectus. Fusce sed lorem sed massa luctus cursus. Praesent id magna arcu.
+                </p>
+                <p class="card-text float-middle">
+                    <div>{{ items[0][5] }}</div>
+                </p>
+            </div>
+        </div>
+    </div>
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel">Upload New File</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <form method=post enctype=multipart/form-data>
+                       <p><input type=file name=file>
+                           <input type=submit value=Upload>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+   {% include 'feed.html' %}
+{% endblock %}

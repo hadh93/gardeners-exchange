@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Gardener's Exchange{% endblock %}
+
+{% block userincludes %}
+<link rel="stylesheet" href="/static/css/messaging.css">
+{% endblock %}
+
+{#
+   Base of the page was found
+   https://bootdey.com/snippets/view/chat-room#preview
+#}
+
+{% block content %}
+<div class="container bootstrap snippet">
+    <div class="row">
+		<div class="col-md-4 bg-white ">
+            <!-- =============================================================== -->
+            <!-- member list -->
+            <ul class="friend-list">
+                <li>
+                	<a href="#" class="clearfix">
+                		<img src="/static/images/uploaded/nurk/profile.jpg" alt="" class="img-circle">
+                		<div class="friend-name">
+                			<strong>nurk</strong>
+                		</div>
+                		<div class="last-message text-muted">Hello, Are you there?</div>
+                		<small class="time text-muted">Just now</small>
+                		<small class="chat-alert label label-danger">1</small>
+                	</a>
+                </li>
+                <li class="active bounceInDown">
+                	<a href="#" class="clearfix">
+                		<img src="/static/images/uploaded/MrPresident/profile.jpg" alt="" class="img-circle">
+                		<div class="friend-name">
+                			<strong>MrPresident</strong>
+                		</div>
+                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
+                		<small class="time text-muted">5 mins ago</small>
+                	<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
+                	</a>
+                </li>
+            </ul>
+		</div>
+
+        <!--=========================================================-->
+        <!-- selected chat -->
+    	<div class="col-md-8 bg-white ">
+            <div class="chat-message">
+                <ul class="chat">
+                    <li class="right clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/MrPresident/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">MrPresident</strong>
+                    			<small class="pull-left text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="left clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/drwhite/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">drwhite</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="right clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/MrPresident/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">MrPresident</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="left clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/drwhite/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">drwhite</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="right clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/MrPresident/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">MrPresident</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="left clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/drwhite/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">drwhite</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+                    		</p>
+                    	</div>
+                    </li>
+                    <li class="left clearfix">
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                                <img src="/static/images/uploaded/drwhite/profile.jpg" alt="User Avatar">
+                    			<strong class="primary-font">drwhite</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+                    		</div>
+                    		<p>
+                    			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+                    		</p>
+                    	</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="chat-box bg-white">
+            	<div class="input-group">
+            		<input class="form-control border no-shadow no-rounded" placeholder="Type your message here">
+            		<span class="input-group-btn">
+            			<button class="btn btn-success no-rounded" type="button">Send</button>
+            		</span>
+            	</div><!-- /input-group -->
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+<div class="row">
+        {% for item in items %}
+            <div class="col-md-3 card">
+                <div class="card-body h-100 d-flex flex-column justify-content-between">
+                {# because of justify thing, LOTS of space is added across card. But the buttons are aligned to the bottom now!#}
+                    <h5 class="card-title">{{ item['name'] }}</h5>
+                    <p class="card-text">
+                        <div>${{ item['price_per_unit'] }} / {{ item['unit'] }}</div>
+                    {% if item[6] == "1" %}
+                        <div>{{ item[6] }} mile away</div>
+                    {% else %}
+                        <div>{{ item[6] }} miles away</div>
+                    {% endif %}
+                    </p>
+                    <p>
+                        <img src="/static/images/uploaded/{{ item_photos[loop.index0][0] }}.jpg" class="img-fluid" alt="Responsive image">
+                    </p>
+                    <div>
+                        <button type="button" class="btn btn-success btn-md mt-auto" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">Buy</button>
+                        <button type="button" class="btn btn-primary btn-md mt-auto" data-toggle="modal" data-target="#itemModal{{ loop.index }}">More Info</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="itemModal{{ loop.index }}" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{ item['name'] }}</h4>
+                        </div>
+                        <div class="modal-body">
+                                <a href="https://www.google.com/maps/dir/?api=1&origin={{ session['address'] }}&destination={{ item['address_id'] }},{{ item['city'] }}
+                                    &travelmode=driving">
+                                    <img src="https://maps.googleapis.com/maps/api/staticmap?size=350x400
+                                    &maptype=roadmap
+                                    &markers=color:blue%7Clabel:D%7C{{ item['address_id'] }},{{ item['city'] }}
+                                    &markers=color:green%7Clabel:H%7C{{ session['address'] }}
+                                    &path={{ item['address_id'] }},{{ item['city'] }}|{{ session['address'] }}
+                                    &key=AIzaSyAycLC3_s_TdWbjlUfBmZ6rYSaRHMp78DY" class="float-right" alt="Map" title="Click for interactive map"></a>
+                                Seller: <a href="{{ url_for('profile', user = item['seller_name']) }}">{{ item['seller_name']}}</a><br>
+                                User Rating: {{ item['rating']}}/5<br>
+                                ${{ item['price_per_unit']}} / {{ item['unit'] }}<br>
+                                {{ item['zipcode']}} miles away<br>
+                                <img src="/static/images/uploaded/{{ item_photos[loop.index0][0] }}.jpg" class="img-fluid float-left w-50" alt="Responsive image">
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-default" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">Buy</button>
+                            <button type="button" class="btn btn-info btn-default">Initiate Trade</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
