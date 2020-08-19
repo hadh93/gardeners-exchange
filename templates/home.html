@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Gardener's Exchange{% endblock %}
+{% block title %}가든엑스 - 농산물 직거래 웹페이지{% endblock %}
 
 {% block content %}
-    <h2>Item Feed</h2>
+    <h2>상품 목록</h2>
     <form method="POST" class="form-inline">
         {{ search_form.csrf_token }}
-        {{ search_form.keyword(class_="form-control mr-sm-2", placeholder="Item or Username") }}
+        {{ search_form.keyword(class_="form-control mr-sm-2", placeholder="상품명 혹은 유저명을 입력하세요") }}
         {{ search_form.submit(class="btn btn-success")}}
-        <p id="somemessage">Have an Item to sell?</p>
-        <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='{{ url_for('itemForSale') }}'">Add Item</button>
+        <p id="somemessage">판매하실 물건이 있으신가요?</p>
+        <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='{{ url_for('itemForSale') }}'">상품 등록</button>
     </form>
     {% include 'feed.html' %}
 {% endblock %}

@@ -5,8 +5,8 @@ import os
 from flask import g, url_for, session
 
 import db
-db.data_source_name = 'host=faraday.cse.taylor.edu dbname=dthomas008 user=dthomas008 password=roduqedi'
-from gardenerexchange import app
+db.data_source_name = 'host=ec2-50-16-198-4.compute-1.amazonaws.com dbname=d5t7m2qv2su7tr user=dlxommmkjinxxz password=60ec0fc386dddec34182a63dd81d2c82df6a0d8ef8398f519d3dced0a44562e9'
+from gardenerexchange.py import app
 
 class FlaskTestCase(unittest.TestCase):
     # This is a helper class that sets up the proper Flask execution context

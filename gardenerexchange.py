@@ -21,44 +21,44 @@ print(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 class ImageUploadForm(FlaskForm):
-    image = FileField('Image')
-    submit = SubmitField('Add an Item')
+    image = FileField('이미지')
+    submit = SubmitField('상품 등록')
 
 
 class itemForSaleForm(FlaskForm):
-    itemname = StringField('Item Name')
-    itemprice = IntegerField('Item Price')
-    itemunit = StringField('Item Quantity')
-    itemsellername = StringField('Item Seller Name')  ## many-to-many db required. link seller's userID
-    image = FileField('Image')
+    itemname = StringField('상품명')
+    itemprice = IntegerField('가격')
+    itemunit = StringField('수량')
+    itemsellername = StringField('판매자명')  ## many-to-many db required. link seller's userID
+    image = FileField('이미지')
     ##itemdescription = TextAreaField('Item Description', validators=[Length(max=500),InputRequired]) <- Probably required as well
-    submit = SubmitField('Add an Item')
+    submit = SubmitField('상품 추가')
 
 
 class registerForm(FlaskForm):
-    username = StringField('Username', validators=[Length(min=5)])
-    emailaddress = StringField('E-mail Address', validators=[Email()])
-    zipcode = StringField('Zipcode', validators=[Length(min=5, max=5)])
-    password = PasswordField('Password',
+    username = StringField('유저명', validators=[Length(min=5)])
+    emailaddress = StringField('이메일주소', validators=[Email()])
+    zipcode = StringField('우편번호', validators=[Length(min=5, max=5)])
+    password = PasswordField('패스워드',
                              validators=[Length(min=8),
-                                         Regexp(r'.*[A-Za-z]', message="Must have at least one letter"),
-                                         Regexp(r'.*[0-9]', message="Must have at least one digit"),
+                                         Regexp(r'.*[A-Za-z]', message="알파벳 1자 이상을 포함해야 합니다."),
+                                         Regexp(r'.*[0-9]', message="숫자 1자 이상을 포함해야 합니다."),
                                          Regexp(r'.*[!?.,;:]',
-                                                message="Must have at least one punctuation character(! ? . , ; :)")])
+                                                message="특수문자(! ? . , ; : 등)를 1자 이상 포함해야 합니다.")])
     passwordconfirmation = PasswordField('Password Confirmation',
-                                         validators=[EqualTo('password', message='Password do not match')])
-    submit = SubmitField('Register')
+                                         validators=[EqualTo('password', message='비밀번호가 일치하지 않습니다.')])
+    submit = SubmitField('등록')
 
 
 class loginForm(FlaskForm):
-    emailaddress = StringField('E-mail Address', validators=[Email()])
-    password = PasswordField('Password')
-    submit = SubmitField('Login')
+    emailaddress = StringField('이메일주소', validators=[Email()])
+    password = PasswordField('패스워드')
+    submit = SubmitField('로그인')
 
 
 class searchForm(FlaskForm):
-    keyword = StringField('Keyword')
-    submit = SubmitField('Search')
+    keyword = StringField('키워드')
+    submit = SubmitField('검색')
 
 
 @app.before_request
@@ -215,10 +215,10 @@ def login():
         result = db.login(login_form.emailaddress.data, login_form.password.data)
         if result != None:
             session['remember'] = db.get_userinfo(result[0])
-            flash('Login Successful!', 'success')
+            flash('로그인 성공!', 'success')
             return redirect(url_for('item_feed'))
         else:
-            flash('Oops! Something went wrong', 'failure')
+            flash('무언가 잘못되었습니다..', 'failure')
 
     return render_template('login.html', login_form=login_form)
 

@@ -1,12 +1,12 @@
 
 {% extends "base.html" %}
 
-{% block title %}Gardener's Exchange{% endblock %}
+{% block title %}가든엑스 - 농산물 직거래 웹페이지{% endblock %}
 
 {% block content %}
 
 {% if register_form.errors %}
-        <h2>There were problems</h2>
+        <h2>비밀번호 양식이 옳지 않습니다.</h2>
         <ul>
             {% for field_name in register_form.errors %}
                 {% for field_error in register_form.errors[field_name] %}
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col card top-buffer">
-                <h4 class="card-title top-buffer">Join the Gardener's Exchange!</h4>
+                <h4 class="card-title top-buffer">회원가입해서 가든엑스를 체험해보세요!</h4>
                 <form class="card-text top-buffer" action="" method="POST" enctype='multipart/form-data'>
                     {{ register_form.csrf_token }}
                     <div class="form-group">

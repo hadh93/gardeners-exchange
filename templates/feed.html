@@ -16,8 +16,8 @@
                         <img src="/static/images/uploaded/{{ item_photos[loop.index0][0] }}.jpg" class="img-fluid" alt="Responsive image">
                     </p>
                     <div>
-                        <button type="button" class="btn btn-success btn-md mt-auto" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">Buy</button>
-                        <button type="button" class="btn btn-primary btn-md mt-auto" data-toggle="modal" data-target="#itemModal{{ loop.index }}">More Info</button>
+                        <button type="button" class="btn btn-success btn-md mt-auto" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">구매</button>
+                        <button type="button" class="btn btn-primary btn-md mt-auto" data-toggle="modal" data-target="#itemModal{{ loop.index }}">자세히</button>
                     </div>
                 </div>
             </div>
@@ -47,9 +47,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success btn-default" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">Buy</button>
-                            <button type="button" class="btn btn-info btn-default">Initiate Trade</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success btn-default" onclick="window.location.href='{{ url_for( 'transaction', id = item['id'])}}'" data-dismiss="modal">구매</button>
+                            <button type="button" class="btn btn-info btn-default">물품 대 물품 거래</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                         </div>
                     </div>
                 </div>

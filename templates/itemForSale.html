@@ -1,12 +1,12 @@
 t
 {% extends "base.html" %}
 
-{% block title %}Gardener's Exchange{% endblock %}
+{% block title %}가든엑스 - 농산물 직거래 웹페이지{% endblock %}
 
 {% block content %}
 
 {% if item_form.errors %}
-        <h2>There were problems</h2>
+        <h2>문제가 발생했습니다:</h2>
         <ul>
             {% for field_name in item_form.errors %}
                 {% for field_error in item_form.errors[field_name] %}
@@ -22,19 +22,19 @@ t
                     <div class="row">
                     <div class="col"></div>
                     <div class="col card top-buffer">
-                        <h4 class="card-title top-buffer">Sell an Item!</h4>
+                        <h4 class="card-title top-buffer">상품 등록</h4>
                         <form class="top-buffer" action="" method="POST" enctype='multipart/form-data'>
                             {{ item_form.csrf_token }}
                           <div class="form-group">
-                              {{ item_form.itemname.label }}{{ item_form.itemname(class_="form-control", placeholder="Home-made cookies, fresh eggplants..") }}
+                              {{ item_form.itemname.label }}{{ item_form.itemname(class_="form-control", placeholder="예) 가지, 홈메이드 쿠키..") }}
                           </div>
 
                           <div class="form-group">
-                              {{ item_form.itemprice.label }}{{ item_form.itemprice(class_="form-control", placeholder="How much is this?") }}
+                              {{ item_form.itemprice.label }}{{ item_form.itemprice(class_="form-control", placeholder="가격을 입력해주세요") }}
                           </div>
 
                           <div class="form-group">
-                              {{ item_form.itemunit.label }}{{ item_form.itemunit(class_="form-control", placeholder="oz, lb, jar ...") }}
+                              {{ item_form.itemunit.label }}{{ item_form.itemunit(class_="form-control", placeholder="온스, 파운드 ...") }}
                           </div>
 
                           <div class="form-group">
