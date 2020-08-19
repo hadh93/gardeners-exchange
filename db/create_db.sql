@@ -53,7 +53,7 @@ CREATE TABLE listings
 CREATE UNIQUE INDEX listings_id_uindex
   ON listings (id);
 
-create table gardeners.photos
+create table photos
 (
 	id serial not null
 		constraint photos_pkey
@@ -62,17 +62,17 @@ create table gardeners.photos
 ;
 
 create unique index photos_id_uindex
-	on gardeners.photos (id)
+	on photos (id)
 ;
 
-create table gardeners.user_photo
+create table user_photo
 (
 	photo_id integer,
 	user_id varchar(32)
 )
 ;
 
-create table gardeners.listing_photo
+create table listing_photo
 (
   photo_id integer,
   listing_id integer

@@ -5,11 +5,15 @@ import random
 
 # Database Utilities ########################################
 
-data_source_name = 'host=ec2-50-16-198-4.compute-1.amazonaws.com dbname=d5t7m2qv2su7tr user=dlxommmkjinxxz password=60ec0fc386dddec34182a63dd81d2c82df6a0d8ef8398f519d3dced0a44562e9'
+data_source_name = 'host=localhost database=test user=postgres password=hoondoggydog12!'
 
 
 def open_db_connection():
-    g.connection = psycopg2.connect(data_source_name)
+    g.connection = psycopg2.connect(user = "postgres",
+                                  password = "hoondoggydog12!",
+                                  host = "127.0.0.1",
+                                  port = "5432",
+                                  database = "test")
     g.cursor = g.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 
@@ -22,7 +26,7 @@ def get_feed():
     """List sample data for home feed"""
     query = '''
         SELECT id, name, price_per_unit, unit, seller_name, email, zipcode, rating, city, state, address_id, other_address_details
-            FROM gardeners.listings INNER JOIN gardeners.users ON gardeners.listings.seller_name = gardeners.users.username
+            FROM listings INNER JOIN users ON listings.seller_name = users.username
             ORDER BY zipcode
         '''
     g.cursor.execute(query)
@@ -33,7 +37,7 @@ def get_feed_search(keyword):
     keyword = '%' + str(keyword) + '%'
     query = '''
             SELECT id, name, price_per_unit, unit, seller_name, email, zipcode, rating, city, state, address_id, other_address_details
-            FROM gardeners.listings INNER JOIN gardeners.users ON gardeners.listings.seller_name = gardeners.users.username 
+            FROM listings INNER JOIN users ON listings.seller_name = users.username 
             WHERE LOWER(name) LIKE LOWER(%(keyword)s) OR LOWER(seller_name) LIKE LOWER(%(keyword)s) ORDER BY zipcode
             '''
     g.cursor.execute(query, {'keyword': keyword})
@@ -42,7 +46,7 @@ def get_feed_search(keyword):
 def get_user_info(user):
     query = '''
             SELECT *
-            FROM gardeners.users
+            FROM users
             WHERE username= %(uname)s
             '''
     g.cursor.execute(query, {'uname':user})
@@ -60,7 +64,7 @@ def get_user_item_photo(listingsInfo):
 def get_user_listings(user):
     query = '''
             SELECT id, name, price_per_unit, unit, seller_name, email, zipcode, rating, city, state, address_id, other_address_details
-            FROM gardeners.listings INNER JOIN gardeners.users on seller_name=username
+            FROM listings INNER JOIN users on seller_name=username
             WHERE seller_name = %(seller_name)s
             '''
     g.cursor.execute(query, {'seller_name':user})
@@ -75,7 +79,7 @@ def get_user_listings(user):
 def create_user(username, emailaddress, zipcode, password):
     rating=0
     query = '''
-        INSERT INTO gardeners.users (username, email, pass, zipcode, rating)
+        INSERT INTO users (username, email, pass, zipcode, rating)
         VALUES (%(username)s, %(email)s, %(pass)s, %(zipcode)s, %(rating)s)
     '''
     g.cursor.execute(query, {'username': username, 'email': emailaddress, 'zipcode': zipcode, 'pass': password, 'rating': rating})
@@ -86,7 +90,7 @@ def login(emailaddress, password):
     """List sample data for profile page"""
     query = '''
             SELECT username
-            FROM gardeners.users
+            FROM users
             WHERE email = %(emailaddress)s  AND pass = %(password)s
             '''
     g.cursor.execute(query, {'emailaddress':emailaddress, 'password':password})
@@ -96,7 +100,7 @@ def get_userinfo(user):
     """List sample data for profile page"""
     query = '''
             SELECT username, email, pass, zipcode, rating
-            FROM gardeners.users
+            FROM users
             WHERE username = %(user)s
             '''
     g.cursor.execute(query, {'user':user})
@@ -104,14 +108,14 @@ def get_userinfo(user):
 
 def change_user_photo(photo_id, user):
     query = '''
-        DELETE FROM gardeners.user_photo
+        DELETE FROM user_photo
         WHERE user_id = %(u_id)s
     '''
     g.cursor.execute(query, {'u_id': user})
     g.connection.commit()
 
     query = '''
-        INSERT INTO gardeners.user_photo (photo_id, user_id)
+        INSERT INTO user_photo (photo_id, user_id)
         VALUES (%(pic_id)s, %(u_id)s)
     '''
     print(photo_id)
@@ -122,7 +126,7 @@ def change_user_photo(photo_id, user):
 
 def create_item_photo(photo_id, listing_id):
     query = '''
-        INSERT INTO gardeners.listing_photo (photo_id, listing_id)
+        INSERT INTO listing_photo (photo_id, listing_id)
         VALUES (%(pic_id)s, %(l_id)s)
     '''
     g.cursor.execute(query, {'pic_id': photo_id, 'l_id': listing_id})
@@ -132,7 +136,7 @@ def create_item_photo(photo_id, listing_id):
 
 def create_item(name, price_per_unit, unit, seller_name):
     query = '''
-        INSERT INTO gardeners.listings (id, name, price_per_unit, unit, seller_name)
+        INSERT INTO listings (id, name, price_per_unit, unit, seller_name)
         VALUES (DEFAULT, %(name)s, %(price_per_unit)s, %(unit)s, %(seller_name)s)
     '''
     g.cursor.execute(query, {'name': name, 'price_per_unit': price_per_unit, 'unit': unit, 'seller_name': seller_name})
@@ -143,7 +147,7 @@ def create_item(name, price_per_unit, unit, seller_name):
 def get_most_recent_user_item(user):
     query = '''
             SELECT id
-            FROM gardeners.listings
+            FROM listings
             WHERE seller_name = %(name_of_seller)s
             ORDER BY id DESC
             '''
@@ -154,7 +158,7 @@ def get_most_recent_user_item(user):
 def get_item_id(item, seller_name):
     query = '''
             SELECT id
-            FROM gardeners.listings
+            FROM listings
             WHERE name = %(item_name)s and seller_name = %(name_of_seller)s
             '''
     g.cursor.execute(query, {'item_name': item, 'name_of_seller': seller_name})
@@ -164,7 +168,7 @@ def get_item_id(item, seller_name):
 def init_photo():
     randominteger=random.randint(20,20000)
     query = '''
-                INSERT INTO gardeners.photos (id) VALUES (%(randominteger)s)
+                INSERT INTO photos (id) VALUES (%(randominteger)s)
                 '''
     g.cursor.execute(query, {'randominteger': randominteger})
     return randominteger
@@ -174,7 +178,7 @@ def get_profile_pic(user):
     """List sample data for profile page"""
     query = '''
             SELECT photo_id
-            FROM gardeners.user_photo
+            FROM user_photo
             WHERE user_id = %(username)s
         '''
     g.cursor.execute(query, {'username':user})
@@ -185,7 +189,7 @@ def get_listing_pics(listingID):
     """List sample data for profile page"""
     query = '''
             SELECT photo_id
-            FROM gardeners.listing_photo
+            FROM listing_photo
             WHERE listing_id = %(listing)s
         '''
     #  Sometimes id is a list
@@ -200,7 +204,7 @@ def get_listing_pics(listingID):
 def purchase_item(id):
     query = '''
             SELECT *
-            FROM gardeners.listings INNER JOIN gardeners.users on seller_name=username
+            FROM listings INNER JOIN users on seller_name=username
             WHERE id =  %(id)s
             '''
     g.cursor.execute(query, {'id':id})

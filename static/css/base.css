@@ -38,6 +38,12 @@
     margin-bottom: 0.3rem;
 }
 
+.transparent {
+    background: rgb(60, 60, 60);
+    background: rgba(60, 60, 60, 0.4);
+    color: white;
+}
+
 @keyframes disappear {
     0% { visibility: visible; }
     1% { opacity: 0;}

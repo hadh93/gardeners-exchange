@@ -121,19 +121,12 @@ def allowed_file(filename):
 
 # uses the Google maps API to determine the distance between two zipcodes
 def parse_JSON_distance(from_location, to_location):
-    url = 'https://maps.googleapis.com/maps/api/distancematrix/json'
-
-    params = dict(
-        units='imperial',
-        origins=from_location,
-        destinations=to_location,
-        key='AIzaSyAaufOPhF-WB9l2biqS0-y4nDk_IFSUQmg'
-    )
-
-    resp = requests.get(url=url, params=params)
+    #
+    url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+str(from_location)+'&destinations='+str(to_location)+'&key=AIzaSyADNijeSubOSzUfwwm8hM0GK1wqYL9Fv8s'
+    resp = requests.get(url)
     data = resp.json()
-    return data['rows'][0]['elements'][0]['distance']['text'].split(' ')[0]
-
+    splitedDistanceList = data["rows"][0]["elements"][0]["distance"]["text"].split(" ")
+    return splitedDistanceList[0]
 
 
 def get_listings_pics(sorted_items):
