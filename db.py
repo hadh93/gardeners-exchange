@@ -5,15 +5,15 @@ import random
 
 # Database Utilities ########################################
 
-data_source_name = 'host=localhost database=test user=postgres password=hoondoggydog12!'
+data_source_name = 'host=ec2-50-16-198-4.compute-1.amazonaws.com database=d5t7m2qv2su7tr user=dlxommmkjinxxz password=60ec0fc386dddec34182a63dd81d2c82df6a0d8ef8398f519d3dced0a44562e9'
 
 
 def open_db_connection():
-    g.connection = psycopg2.connect(user = "postgres",
-                                  password = "hoondoggydog12!",
-                                  host = "127.0.0.1",
+    g.connection = psycopg2.connect(user = "dlxommmkjinxxz",
+                                  password = "60ec0fc386dddec34182a63dd81d2c82df6a0d8ef8398f519d3dced0a44562e9",
+                                  host = "ec2-50-16-198-4.compute-1.amazonaws.com",
                                   port = "5432",
-                                  database = "test")
+                                  database = "d5t7m2qv2su7tr")
     g.cursor = g.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 
