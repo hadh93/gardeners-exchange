@@ -14,7 +14,7 @@ It was created by team alpha-4 (Caleb Belmont, Donghun Ha, Daniel Thomas, Joel V
 
 Thank you, Dr. Thomas Nurkkala, the instructor of this course, for the teaching, guidance, and kind words.
 
-##🛠 Used Tech Stacks 🛠
+## 🛠 Used Tech Stacks 🛠
 >   <img src = "https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white">
 >   <img src = "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
 >   <img src = "https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white">
