@@ -15,7 +15,7 @@ itsdangerous==1.1.0
 Jinja2==3.1.4
 MarkupSafe==1.1.1
 python-dateutil==1.5
-requests==2.24.0
+requests==2.32.2
 six==1.15.0
 urllib3==1.26.18
 virtualenv==20.0.30
