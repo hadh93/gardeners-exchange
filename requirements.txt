@@ -17,7 +17,7 @@ MarkupSafe==1.1.1
 python-dateutil==1.5
 requests==2.32.2
 six==1.15.0
-urllib3==1.26.18
+urllib3==1.26.19
 virtualenv==20.0.30
 virtualenvwrapper-win==1.2.6
 Werkzeug==3.0.3
